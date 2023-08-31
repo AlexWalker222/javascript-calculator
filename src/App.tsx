@@ -84,7 +84,7 @@ function App() {
       <div className="container">
         <h1>Calculator Application</h1>
         <div id="calculator">
-          <div id="display" style={{ textAlign: "right" }}>
+          <div id="display">
             <div id="answer">{answer}</div>
             <div id="expression">{expression}</div>
           </div>
