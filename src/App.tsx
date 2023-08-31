@@ -1,10 +1,14 @@
 import { useState } from "react";
-import ".App.css";
+import "./App.css";
 
 function App() {
-  const [answer, setAnswer] = useState("0");
+  const [answer, setAnswer] = useState("");
   const [expression, setExpression] = useState("");
   const et = expression.trim();
+
+  const isOperator = (symbol: string) => {
+    return /[*/+-]/.test(symbol);
+  };
 
   const buttonPress = (symbol: string) => {
     if (symbol === "clear") {
@@ -29,6 +33,8 @@ function App() {
     } else if (symbol === ".") {
       // split by operators and get last number
       const lastNumber = expression.split(/[-+/*]/g).pop();
+      if (!lastNumber) return;
+      console.log("lastNumber :>> ", lastNumber);
       // if last number already has a decimal, don't add another
       if (lastNumber?.includes(".")) return;
       setExpression(expression + symbol);
@@ -72,133 +78,141 @@ function App() {
     }
     setExpression("");
   };
+
   return (
     <>
       <div className="container">
         <h1>Calculator Application</h1>
         <div id="calculator">
-          <div id="display">
+          <div id="display" style={{ textAlign: "right" }}>
             <div id="answer">{answer}</div>
             <div id="expression">{expression}</div>
           </div>
           <button
-            onClick={() => buttonPress("clear")}
             id="clear"
+            onClick={() => buttonPress("clear")}
             className="light-gray"
           >
             C
           </button>
           <button
-            onClick={() => buttonPress("negative")}
             id="negative"
+            onClick={() => buttonPress("negative")}
             className="light-gray"
           >
             +/-
           </button>
           <button
-            onClick={() => buttonPress("percentage")}
             id="percentage"
+            onClick={() => buttonPress("percentage")}
             className="light-gray"
           >
             %
           </button>
           <button
-            onClick={() => buttonPress("/")}
             id="divide"
+            onClick={() => buttonPress("/")}
             className="yellow"
           >
             /
           </button>
           <button
-            onClick={() => buttonPress("7")}
             id="seven"
+            onClick={() => buttonPress("7")}
             className="dark-gray"
           >
             7
           </button>
           <button
-            onClick={() => buttonPress("8")}
             id="eight"
+            onClick={() => buttonPress("8")}
             className="dark-gray"
           >
             8
           </button>
           <button
-            onClick={() => buttonPress("9")}
             id="nine"
+            onClick={() => buttonPress("9")}
             className="dark-gray"
           >
             9
           </button>
           <button
-            onClick={() => buttonPress("*")}
             id="multiply"
+            onClick={() => buttonPress("*")}
             className="yellow"
           >
             *
           </button>
           <button
-            onClick={() => buttonPress("4")}
             id="four"
+            onClick={() => buttonPress("4")}
             className="dark-gray"
           >
             4
           </button>
           <button
-            onClick={() => buttonPress("5")}
             id="five"
+            onClick={() => buttonPress("5")}
             className="dark-gray"
           >
             5
           </button>
           <button
-            onClick={() => buttonPress("6")}
             id="six"
+            onClick={() => buttonPress("6")}
             className="dark-gray"
           >
             6
           </button>
           <button
-            onClick={() => buttonPress("1")}
+            id="subtract"
+            onClick={() => buttonPress("-")}
+            className="yellow"
+          >
+            -
+          </button>
+          <button
             id="one"
+            onClick={() => buttonPress("1")}
             className="dark-gray"
           >
             1
           </button>
           <button
-            onClick={() => buttonPress("2")}
             id="two"
+            onClick={() => buttonPress("2")}
             className="dark-gray"
           >
             2
           </button>
           <button
-            onClick={() => buttonPress("3")}
             id="three"
+            onClick={() => buttonPress("3")}
             className="dark-gray"
           >
             3
           </button>
-          <button onClick={() => buttonPress("+")} id="add" className="yellow">
+          <button id="add" onClick={() => buttonPress("+")} className="yellow">
             +
           </button>
           <button
-            onClick={() => buttonPress("0")}
             id="zero"
+            onClick={() => buttonPress("0")}
             className="dark-gray"
           >
             0
           </button>
           <button
-            onClick={() => buttonPress(".")}
             id="decimal"
+            onClick={() => buttonPress(".")}
             className="dark-gray"
           >
             .
           </button>
           <button
-            onClick={() => buttonPress("=")}
             id="equals"
+            onClick={() => buttonPress("=")}
             className="yellow"
           >
             =
@@ -208,4 +222,5 @@ function App() {
     </>
   );
 }
+
 export default App;
