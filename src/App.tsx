@@ -11,7 +11,7 @@ function App() {
       setAnswer("");
       setExpression("0");
     } else if (symbol === "negative") {
-      if (awnser === "") return;
+      if (answer === "") return;
       setAnswer(
         answer.toString().charAt(0) === "-" ? answer.slice(1) : "-" + answer
       );
