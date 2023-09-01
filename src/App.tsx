@@ -1,3 +1,4 @@
+/* eslint-disable no-eval */
 import { useState } from "react";
 import "./App.css";
 
@@ -31,11 +32,9 @@ function App() {
         setExpression(expression + symbol);
       }
     } else if (symbol === ".") {
-      // split by operators and get last number
       const lastNumber = expression.split(/[-+/*]/g).pop();
       if (!lastNumber) return;
       console.log("lastNumber :>> ", lastNumber);
-      // if last number already has a decimal, don't add another
       if (lastNumber?.includes(".")) return;
       setExpression(expression + symbol);
     } else {
@@ -48,14 +47,10 @@ function App() {
   };
 
   const calculate = () => {
-    // if last char is an operator, do nothing
     if (isOperator(et.charAt(et.length - 1))) return;
-    // clean the expression so that two operators in a row uses the last operator
-    // 5 * - + 5 = 10
     const parts = et.split(" ");
     const newParts = [];
 
-    // go through parts backwards
     for (let i = parts.length - 1; i >= 0; i--) {
       if (["*", "/", "+"].includes(parts[i]) && isOperator(parts[i - 1])) {
         newParts.unshift(parts[i]);
@@ -70,11 +65,11 @@ function App() {
         newParts.unshift(parts[i]);
       }
     }
-    const newExpression = newParts.join(" ");
+    var newExpression = newParts.join(" ");
     if (isOperator(newExpression.charAt(0))) {
-      setAnswer(eval(answer + newExpression) as string)
+      setAnswer(eval(answer + newExpression) as string);
     } else {
-      setAnswer(eval(newExpression) as string)
+      setAnswer(eval(newExpression) as string);
     }
     setExpression(" ");
   };
