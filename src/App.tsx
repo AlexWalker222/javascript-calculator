@@ -72,11 +72,11 @@ function App() {
     }
     const newExpression = newParts.join(" ");
     if (isOperator(newExpression.charAt(0))) {
-      setAnswer(eval(answer + newExpression) as string);
+      setAnswer(eval(answer + newExpression) as string)
     } else {
-      setAnswer(eval(newExpression) as string);
+      setAnswer(eval(newExpression) as string)
     }
-    setExpression("");
+    setExpression(" ");
   };
 
   return (

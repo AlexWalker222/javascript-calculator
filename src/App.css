@@ -34,15 +34,17 @@
 
 .light-gray {
     background-color: var(--light-gray);
+    color: blueviolet;
 }
 
 .dark-gray {
     background-color: var(--dark-gray);
+    color: goldenrod;
 }
 
 .yellow {
     background-color: var(--yellow);
-    color: white;
+    color: blueviolet;
 }
 
 button {
@@ -144,7 +146,8 @@ button:active {
 }
 
 #decimal {
-    grid-area: decimal;
+    grid-area: decimal double;
+    size: double;
 }
 
 #equals {
